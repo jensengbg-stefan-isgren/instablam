@@ -1,18 +1,59 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <Header />
+    <Welcome />
+    <DemoPictures />
+    <img class="photo" v-for="(photo,index) in photos" :key="index" :src="photo" />
+    <Footer class="footer_menu" />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
-
+import { mapState } from "vuex";
+import DemoPictures from "@/components/DemoPictures";
+import Welcome from "@/components/Welcome";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 export default {
   name: "Home",
   components: {
-    HelloWorld
+    Header,
+    Footer,
+    Welcome,
+    DemoPictures
+  },
+  data() {
+    return {};
+  },
+  methods: {},
+  computed: {
+    ...mapState(["capturedImage", "photos", "mediaTrack"])
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.home {
+  position: relative;
+  max-height: 100vh;
+  margin: auto;
+}
+
+.captured_image {
+  width: 100%;
+  height: auto;
+}
+
+.photo {
+  width: 100%;
+  height: auto;
+}
+
+.footer_menu {
+  padding: 10px;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 50;
+}
+</style>
